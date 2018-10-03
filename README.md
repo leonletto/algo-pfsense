@@ -49,7 +49,7 @@ not be able to install ECDSA certs on pfSense versions older than 2.4.
    * Or add the `router` user to an existing Algo server
 
 * Install `router-updown.sh` on the Algo server
-   * Get a copy from [here](https://gist.github.com/davidemyers/e907ec6ce8806e3bf14a964ac0f27e4e)
+   * Get a copy from above or click [here](https://raw.githubusercontent.com/davidemyers/algo-pfsense/master/router-updown.sh)
    * Follow the instructions in the script itself to install it and modify `/etc/ipsec.conf`
 
 * Install the certificates created by Algo to the pfSense Certificate Manager:
