@@ -61,7 +61,7 @@ not be able to install ECDSA certs on pfSense versions older than 2.4.
    * Any settings not shown are left at their defaults
 
 
-![](https://photos.smugmug.com/photos/i-qL9BfFB/0/9bd9f858/O/i-qL9BfFB.jpg)
+![](images/phase1.jpg)
 
 
 * Add a Phase 2 for IPv4 to the Phase 1:
@@ -70,9 +70,9 @@ not be able to install ECDSA certs on pfSense versions older than 2.4.
    * Optionally, add a Phase 2 for IPv6 where **Mode** is **Tunnel IPv6** and the **Remote Network** address is `::/0`.
    
    
-![](https://photos.smugmug.com/photos/i-MpTQZs7/0/b8fb2532/O/i-MpTQZs7.jpg)
+![](images/phase2.jpg)
 
 
 * Your IPsec configuration will look like this: 
 
-![](https://photos.smugmug.com/photos/i-xSC8Pdm/0/896c4bba/O/i-xSC8Pdm.jpg)
+![](images/summary.jpg)
