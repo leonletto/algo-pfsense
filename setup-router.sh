@@ -42,5 +42,5 @@ if [[ ! -e /usr/local/sbin/router-updown.sh ]]; then
 	EOF
 
     # Restart IPsec.
-    ipsec restart
+    systemctl restart ipsec
 fi
