@@ -7,7 +7,7 @@ This approach to connecting a pfSense router to an
 the router and normal AlgoVPN clients. The Algo-side changes should work with
 other routers as well.
 
-Last updated: 2019-03-27: Updated certificate locations
+Last updated: 2019-06-24: Decode the certificate from the p12 file, which works if the intermediate PKI files are not saved.
 
 ### Caveats
 
@@ -52,6 +52,7 @@ not be able to install ECDSA certs on pfSense versions older than 2.4.
 * Run `./algo` per the instructions to create a new AlgoVPN server.
    * Or add the `router` user to an existing AlgoVPN server
      (see [Adding or Removing Users](https://github.com/trailofbits/algo#adding-or-removing-users)).
+   * Once `./algo` has finished running, record the p12 password that gets printed to the screen.
 
 * Install `router-updown.sh` on the AlgoVPN server:
    * Get a copy of `router-updown.sh` from this repository.
@@ -60,12 +61,15 @@ not be able to install ECDSA certs on pfSense versions older than 2.4.
      steps for you.
 
 * Import the certificates created by `./algo` using the pfSense **Certificate Manager**:
-   * The CA is in `configs/<ip_addr>/ipsec/manual/cacert.pem`
-   * The User Cert is in `configs/<ip_addr>/ipsec/.pki/certs/router.crt`
-   * The User Cert Key is in `configs/<ip_addr>/ipsec/.pki/private/router.key`
+   * The certificates are in the directory `configs/<ip_addr>/ipsec/manual`
+   * Import the CA, which is in the file `cacert.pem`
+   * Decode the file `router.p12` to create the file `router.pem` which will contain the certificate and key for the user `router`. When prompted for a password, enter the p12 password previously recorded:
+      * `openssl pkcs12 -in router.p12 -nodes -out router.pem`
+   * Import the user certificate and key found in `router.pem`
 
 * Add a Phase 1:
    * Any settings not shown are left at their defaults.
+   * With recent versions of Algo you might not be able to connect a Phase 1 without also adding a Phase 2.
 
 
 ![](images/phase1.jpg)
