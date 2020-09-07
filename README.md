@@ -7,15 +7,15 @@ This approach to connecting a pfSense router to an
 the router and normal AlgoVPN clients. The Algo-side changes should work with
 other routers as well.
 
-Last updated: 2019-06-24: Decode the certificate from the p12 file, which works if the intermediate PKI files are not saved.
+Last updated: 2020-09-07: Add instructions for reverting a change to the Algo CA certificates.
 
 ### Caveats
 
 * This approach tunnels some or all of the LAN subnet to the AlgoVPN. NAT
 occurs on the AlgoVPN side for both IPv4 and IPv6.
 
-* This has been tested using pfSense 2.4.3 in VirtualBox with AlgoVPN
-servers on DigitalOcean and Amazon EC2.
+* This has been tested using pfSense 2.4.5-p1 in VirtualBox with an AlgoVPN
+server on Vultr.
 
 * This approach does not make use of the VTI (routed IPsec) feature added in
 pfSense 2.4.4. As I understand it, supporting IPv6 using VTI requires IPsec on
@@ -43,6 +43,10 @@ they do work when you choose **Mutual RSA** when creating the Phase 1. You may
 not be able to install ECDSA certs on pfSense versions older than 2.4.
 
 ### Instructions
+
+* Revert a change to Algo:
+   * A change to Algo (PR [#1675](https://github.com/trailofbits/algo/pull/1675)) has made the generated CA certificates incompatible with pfSense. To revert this change, fetch your copy of Algo with `git clone` and run the command:
+      * `git revert -n 0efa4eaf9175f4345fb8d81eb1d3c6205a57048e`
 
 * Edit the Algo `config.cfg`:
    * Add a user named `router` in addition to any other users you create.
@@ -79,8 +83,8 @@ not be able to install ECDSA certs on pfSense versions older than 2.4.
    * This example routes the entire LAN subnet, but route whatever you wish by choosing another value for **Local Network**.
    * Multiple Phase 2 entries are supported. You can route multiple individual hosts this way.
    * Optionally, add a Phase 2 for IPv6 where **Mode** is **Tunnel IPv6** and the **Remote Network** address is `::/0`.
-   
-   
+
+
 ![](images/phase2.jpg)
 
 
