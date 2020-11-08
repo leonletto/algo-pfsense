@@ -7,7 +7,7 @@ This approach to connecting a pfSense router to an
 the router and normal AlgoVPN clients. The Algo-side changes should work with
 other routers as well.
 
-Last updated: 2020-09-07: Add instructions for reverting a change to the Algo CA certificates.
+Last updated: 2020-11-08: Revised instructions for reverting a change to the Algo CA certificates.
 
 ### Caveats
 
@@ -45,8 +45,13 @@ not be able to install ECDSA certs on pfSense versions older than 2.4.
 ### Instructions
 
 * Revert a change to Algo:
-   * A change to Algo (PR [#1675](https://github.com/trailofbits/algo/pull/1675)) has made the generated CA certificates incompatible with pfSense. To revert this change, fetch your copy of Algo with `git clone` and run the command:
-      * `git revert -n 0efa4eaf9175f4345fb8d81eb1d3c6205a57048e`
+   * A change to Algo (PR [#1675](https://github.com/trailofbits/algo/pull/1675)) has made the generated CA certificates incompatible with pfSense. To revert this change, fetch your copy of Algo with `git clone` and run these commands (ignore the error `Merge conflict in config.cfg`):
+
+        ```
+        git revert -n 0efa4eaf9175f4345fb8d81eb1d3c6205a57048e
+        git restore --staged config.cfg
+        git checkout -- config.cfg
+        ```
 
 * Edit the Algo `config.cfg`:
    * Add a user named `router` in addition to any other users you create.
