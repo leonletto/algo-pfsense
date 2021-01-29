@@ -16,7 +16,7 @@
 
 * Locate the WireGuard configuration file for the user `router` in `configs/<ip_addr>/wireguard/router.conf`.
 
-* Create a new [WireGuard Tunnel](https://docs.netgate.com/pfsense/en/latest/vpn/wireguard/settings.html#wireguard-tunnel-settings) and add a [WireGuard Peer](https://docs.netgate.com/pfsense/en/latest/vpn/wireguard/settings.html#wireguard-peer-settings) in pfSense using the information from the configuration file. Note that you need to add CIDR suffixes to the network addresses for the tunnel.
+* Create a new [WireGuard Tunnel](https://docs.netgate.com/pfsense/en/latest/vpn/wireguard/settings.html#wireguard-tunnel-settings) and add a [WireGuard Peer](https://docs.netgate.com/pfsense/en/latest/vpn/wireguard/settings.html#wireguard-peer-settings) in pfSense using the information from the configuration file. Note that you need to add CIDR suffixes to the network addresses for the tunnel. In the field **Peer WireGuard Address** enter `10.49.0.1, 2001:db8:a160::1`, the addresses to be used for gateway monitoring.
 
 ![](images/wg-tunnel.jpg)
 
@@ -25,10 +25,6 @@
     > Before assigning the interface, make sure default gateway for the firewall is not set to Automatic or the firewall may end up using the `wg` interface as the default gateway, which is unlikely to be the desired outcome.
 
 ![](images/wg-interface.jpg)
-
-* Once the interface has been assigned gateways will be created and gateway monitoring will be enabled. The monitor IP addresses should be set to the AlgoVPN side of the WireGuard tunnel, `10.49.0.1` and `2001:db8:a160::1`. You can change the **Monitor IP** in [Gateway Settings](https://docs.netgate.com/pfsense/en/latest/routing/gateway-configure.html) if required.
-
-![](images/wg-gateways.jpg)
 
 * Create [Outbound NAT](https://docs.netgate.com/pfsense/en/latest/nat/outbound.html) rules for both IPv4 and IPv6. You will need to switch from **Automatic Outbound NAT** to **Hybrid Outbound NAT**. Each rule should map a LAN network address to the WireGuard interface address.
 
