@@ -20,7 +20,7 @@
 
 ![](images/wg-tunnel.jpg)
 
-* Follow the instructions to [Assign a WireGuard Interface](https://docs.netgate.com/pfsense/en/latest/vpn/wireguard/assign.html). Note the following in the pfSense documentation:
+* Follow the instructions to [Assign a WireGuard Interface](https://docs.netgate.com/pfsense/en/latest/vpn/wireguard/assign.html) and set the value for MSS to `1420`. Note the following in the pfSense documentation:
 
     > Before assigning the interface, make sure default gateway for the firewall is not set to Automatic or the firewall may end up using the `wg` interface as the default gateway, which is unlikely to be the desired outcome.
 
