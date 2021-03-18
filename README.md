@@ -1,5 +1,7 @@
 ## Using an [AlgoVPN](https://github.com/trailofbits/algo) with [pfSense](https://www.pfsense.org)
 
+**UPDATE** 2021-03-18: Netgate has decided to [remove WireGuard from pfSense](https://www.netgate.com/blog/wireguard-removed-from-pfsense-ce-and-pfsense-plus-software.html) for the time being. I'm going to leave these instructions here for when WireGuard returns.
+
 These instructions previously only described how to route traffic from a pfSense router through an AlgoVPN using IPsec. With version 2.5 pfSense supports [WireGuard](https://www.netgate.com/blog/wireguard-for-pfsense-software.html), which makes using pfSense with an AlgoVPN easier.
 
 ### WireGuard

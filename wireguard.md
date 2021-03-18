@@ -1,5 +1,6 @@
 ## Using an AlgoVPN with pfSense using WireGuard
 
+**UPDATE** 2021-03-18: Netgate has decided to [remove WireGuard from pfSense](https://www.netgate.com/blog/wireguard-removed-from-pfsense-ce-and-pfsense-plus-software.html) for the time being. I'm going to leave these instructions here for when WireGuard returns.
 
 ### Caveats
 
